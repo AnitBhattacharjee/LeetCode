@@ -1,22 +1,12 @@
-class Solution {
+class Solution {                      
 public:
     int reverse(int x) {
-        int reversed_num = 0;
-
-        while (x != 0) {
-            int digit = x % 10;
-            // Check for overflow before updating reversed_num
-            if (reversed_num > INT_MAX / 10 || (reversed_num == INT_MAX / 10 && digit > 7)) {
-                return 0; // Overflow will occur if we update reversed_num
-            }
-            if (reversed_num < INT_MIN / 10 || (reversed_num == INT_MIN / 10 && digit < -8)) {
-                return 0; // Overflow will occur if we update reversed_num
-            }
-
-            reversed_num = reversed_num * 10 + digit;
-            x /= 10;
+        long r=0;      // decleare r 
+        while(x){
+         r=r*10+x%10; // find remainder and add its to r
+         x=x/10;     // Update the value of x
         }
-
-        return reversed_num;
+        if(r>INT_MAX || r<INT_MIN) return 0; // check range if r is outside the range then return 0  
+        return int(r);  // if r in the 32 bit range then return r
     }
-};
+}; 
